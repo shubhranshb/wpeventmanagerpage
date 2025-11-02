@@ -1,5 +1,4 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { ChevronDown, MapPin, AlertCircle, Navigation } from 'lucide-react';
@@ -33,14 +32,15 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(fullAddress)}`;
 
   return (
-    <Card className="border border-gray-200 shadow-md hover:shadow-lg rounded-2xl overflow-hidden bg-white">
-      <CardHeader className="pb-5 pt-6 px-8">
-        <CardTitle className="flex items-center gap-3 text-xl font-semibold">
-          <MapPin className="h-6 w-6 text-[#0096ff]" />
-          Venue
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6 px-8 pb-8">
+    <div className="mb-12">
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+          <h2 className="text-2xl font-semibold text-gray-900">Venue</h2>
+        </div>
+        <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
+      </div>
+      <div className="pt-2 space-y-6">
         {/* Always Visible - Address and Directions */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 p-5 bg-gray-50/50 rounded-2xl border border-gray-200">
           <div className="flex-1">
@@ -162,7 +162,7 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
             </div>
           </CollapsibleContent>
         </Collapsible>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

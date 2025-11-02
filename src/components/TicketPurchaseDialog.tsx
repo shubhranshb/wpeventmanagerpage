@@ -12,6 +12,7 @@ export interface TicketTier {
   soldTickets: number;
   isSoldOut: boolean;
   description: string;
+  requiresSeating?: boolean; // Add this to enable seat selection for specific tiers
 }
 
 export interface DayTickets {
@@ -49,7 +50,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
           <>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 text-gray-900">
-                <Clock className="h-6 w-6 text-indigo-600" />
+                <Clock className="h-6 w-6 text-[#0096ff]" />
                 Get Notified When Sales Start
               </DialogTitle>
               <DialogDescription>
@@ -74,17 +75,17 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
           </>
         ) : (
           <>
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2 text-gray-900">
-                <Ticket className="h-6 w-6 text-indigo-600" />
-                Select Your Tickets
-              </DialogTitle>
-              <DialogDescription>
-                Choose your preferred ticket type and day for the event.
-              </DialogDescription>
-            </DialogHeader>
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-gray-900">
+            <Ticket className="h-6 w-6 text-[#0096ff]" />
+            Select Your Tickets
+          </DialogTitle>
+          <DialogDescription>
+            Choose your preferred ticket type and day for the event.
+          </DialogDescription>
+        </DialogHeader>
 
-            <Accordion type="single" collapsible className="mt-4">
+        <Accordion type="single" collapsible className="mt-4">
           {tickets.map((day, dayIndex) => {
             // Calculate summary info for each day
             const availableTickets = day.tiers.filter(t => !t.isSoldOut).length;
@@ -95,7 +96,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex items-center gap-4">
-                      <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-lg">
+                      <div className="bg-[#0096ff] text-white px-4 py-2 rounded-lg">
                         <div className="flex items-center gap-2">
                           <CalendarDays className="h-4 w-4" />
                           <span className="text-sm">Day {day.dayNumber}</span>
@@ -124,7 +125,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
                           className={`p-5 transition-all ${
                             tier.isSoldOut 
                               ? 'bg-gray-50 border-gray-300 opacity-75' 
-                              : 'hover:shadow-lg hover:border-indigo-300'
+                              : 'hover:shadow-lg hover:border-[#0096ff]/30'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-4">
@@ -217,14 +218,14 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
               </AccordionItem>
             );
           })}
-            </Accordion>
+        </Accordion>
 
-            <div className="mt-6 p-4 bg-indigo-50 rounded-lg border border-indigo-100">
-              <p className="text-sm text-indigo-900">
-                <strong>Note:</strong> Ticket prices may increase as we get closer to the event date. 
-                Secure your spot now at the best price!
-              </p>
-            </div>
+        <div className="mt-6 p-4 bg-[#e6f4ff] rounded-lg border border-[#bfe3ff]">
+          <p className="text-sm text-[#005aa3]">
+            <strong>Note:</strong> Ticket prices may increase as we get closer to the event date. 
+            Secure your spot now at the best price!
+          </p>
+        </div>
           </>
         )}
       </DialogContent>

@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { ChevronDown, Youtube, Facebook, Instagram, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
@@ -30,25 +29,31 @@ export function EventMedia({ attachments }: EventMediaProps) {
   if (attachments.length === 0) return null;
 
   return (
-    <Card className="mb-10 border border-gray-200 shadow-md hover:shadow-lg rounded-2xl overflow-hidden bg-white">
+    <div className="mb-12">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <CardHeader className="cursor-pointer pb-5 pt-6 px-8 hover:bg-gray-50/50 transition-colors" onClick={() => setIsOpen(!isOpen)}>
+        <div className="mb-6">
           <CollapsibleTrigger asChild>
-            <div className="flex items-center justify-between w-full">
-              <CardTitle className="flex items-center gap-3 text-xl font-semibold">
-                <Youtube className="h-6 w-6 text-[#0096ff]" />
-                Event Media & Links
-              </CardTitle>
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center justify-between w-full group cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+                <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-[#0096ff] transition-colors">
+                  Event Media & Links
+                </h2>
+              </div>
               <ChevronDown 
-                className={`h-5 w-5 text-gray-500 transition-transform duration-300 ${
+                className={`h-5 w-5 text-gray-400 group-hover:text-[#0096ff] transition-all duration-300 ${
                   isOpen ? 'transform rotate-180' : ''
                 }`}
               />
-            </div>
+            </button>
           </CollapsibleTrigger>
-        </CardHeader>
+          <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
+        </div>
         <CollapsibleContent>
-          <CardContent className="px-8 pb-8 space-y-5">
+          <div className="pt-2 space-y-6">
             {/* YouTube Videos */}
             {youtubeVideos.length > 0 && (
               <div className="space-y-3">
@@ -98,7 +103,7 @@ export function EventMedia({ attachments }: EventMediaProps) {
                               <Facebook className="h-4 w-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-gray-900 text-sm font-medium group-hover:text-indigo-600 transition-colors">
+                              <div className="text-gray-900 text-sm font-medium group-hover:text-[#0096ff] transition-colors">
                                 Facebook Event
                               </div>
                               <div className="text-[10px] text-gray-600">View on Facebook</div>
@@ -111,7 +116,7 @@ export function EventMedia({ attachments }: EventMediaProps) {
                               <Instagram className="h-4 w-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-gray-900 text-sm font-medium group-hover:text-indigo-600 transition-colors">
+                              <div className="text-gray-900 text-sm font-medium group-hover:text-[#0096ff] transition-colors">
                                 Instagram Page
                               </div>
                               <div className="text-[10px] text-gray-600">Follow on Instagram</div>
@@ -125,9 +130,9 @@ export function EventMedia({ attachments }: EventMediaProps) {
                 </div>
               </div>
             )}
-          </CardContent>
+          </div>
         </CollapsibleContent>
       </Collapsible>
-    </Card>
+    </div>
   );
 }

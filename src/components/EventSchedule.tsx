@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Clock } from 'lucide-react';
 
 interface EventDate {
@@ -9,9 +8,10 @@ interface EventDate {
 
 interface EventScheduleProps {
   eventDates: EventDate[];
+  isSingleDay?: boolean;
 }
 
-export function EventSchedule({ eventDates }: EventScheduleProps) {
+export function EventSchedule({ eventDates, isSingleDay = false }: EventScheduleProps) {
   // Parse date to get day and month
   const parseDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -24,12 +24,16 @@ export function EventSchedule({ eventDates }: EventScheduleProps) {
 
 
   return (
-    <Card className="mb-10 border border-gray-200 shadow-md hover:shadow-lg rounded-2xl overflow-hidden bg-white">
-      <CardHeader className="pb-5 pt-6 px-8">
-        <CardTitle className="text-gray-900 text-xl font-semibold">Event Schedule</CardTitle>
-      </CardHeader>
-      <CardContent className="px-8 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div className="mb-12">
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+          <h2 className="text-2xl font-semibold text-gray-900">{isSingleDay ? 'Event Details' : 'Event Schedule'}</h2>
+        </div>
+        <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
+      </div>
+      <div className="pt-2">
+        <div className={`grid gap-5 ${isSingleDay ? 'grid-cols-1 max-w-2xl' : 'grid-cols-1 md:grid-cols-3'}`}>
           {eventDates.map((eventDate, index) => {
             const { month, day, weekday } = parseDate(eventDate.date);
             
@@ -52,13 +56,18 @@ export function EventSchedule({ eventDates }: EventScheduleProps) {
                     
                     {/* Event Details */}
                     <div className="flex-1 min-w-0 flex flex-col justify-center">
-                      <div className="text-gray-900 mb-2 text-base font-medium">Day {index + 1}</div>
+                      {!isSingleDay && <div className="text-gray-900 mb-2 text-base font-medium">Day {index + 1}</div>}
                       <div className="flex items-center gap-2 text-gray-600">
                         <Clock className="h-3.5 w-3.5 flex-shrink-0 text-[#0096ff]" />
                         <span className="text-xs truncate">
                           {eventDate.startTime} - {eventDate.endTime}
                         </span>
                       </div>
+                      {isSingleDay && (
+                        <div className="mt-2 text-xs text-gray-500">
+                          {eventDate.date}
+                        </div>
+                      )}
                     </div>
                   </div>
                   {/* Mini accent badge */}
@@ -68,7 +77,7 @@ export function EventSchedule({ eventDates }: EventScheduleProps) {
             );
           })}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

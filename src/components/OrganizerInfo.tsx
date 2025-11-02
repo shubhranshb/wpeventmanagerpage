@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Calendar, Award, Clock } from 'lucide-react';
 
@@ -11,7 +10,8 @@ interface OrganizerInfoProps {
 
 export function OrganizerInfo({ name, totalEvents, yearsOnPlatform, profileImage }: OrganizerInfoProps) {
   // Get initials from name
-  const getInitials = (name: string) => {
+  const getInitials = (name: string | undefined) => {
+    if (!name) return '??';
     return name
       .split(' ')
       .map(word => word[0])
@@ -21,11 +21,15 @@ export function OrganizerInfo({ name, totalEvents, yearsOnPlatform, profileImage
   };
 
   return (
-    <Card className="border border-gray-200 shadow-md hover:shadow-lg rounded-2xl overflow-hidden bg-white">
-      <CardHeader className="pb-5 pt-6 px-8">
-        <CardTitle className="text-xl font-semibold">About the Organizer</CardTitle>
-      </CardHeader>
-      <CardContent className="px-8 pb-8">
+    <div className="mb-12">
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+          <h2 className="text-2xl font-semibold text-gray-900">About the Organizer</h2>
+        </div>
+        <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
+      </div>
+      <div className="pt-2">
         <div className="space-y-5">
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16 border-4 border-white shadow-lg">
@@ -72,7 +76,7 @@ export function OrganizerInfo({ name, totalEvents, yearsOnPlatform, profileImage
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

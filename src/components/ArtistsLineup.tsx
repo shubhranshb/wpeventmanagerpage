@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { Badge } from './ui/badge';
 import { Music2, Star, ChevronDown } from 'lucide-react';
@@ -15,31 +14,38 @@ export interface Artist {
 
 interface ArtistsLineupProps {
   artists: Artist[];
+  isSingleDay?: boolean;
 }
 
-export function ArtistsLineup({ artists }: ArtistsLineupProps) {
+export function ArtistsLineup({ artists, isSingleDay = false }: ArtistsLineupProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Card className="mb-10 border border-gray-200 shadow-md hover:shadow-lg rounded-2xl overflow-hidden bg-white">
+    <div className="mb-12">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <CardHeader className="cursor-pointer pb-5 pt-6 px-8 hover:bg-gray-50/50 transition-colors" onClick={() => setIsOpen(!isOpen)}>
+        <div className="mb-6">
           <CollapsibleTrigger asChild>
-            <div className="flex items-center justify-between w-full">
-              <CardTitle className="flex items-center gap-3 text-xl font-semibold">
-                <Music2 className="h-6 w-6 text-[#0096ff]" />
-                Featured Artists
-              </CardTitle>
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center justify-between w-full group cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+                <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-[#0096ff] transition-colors">
+                  Featured Artists
+                </h2>
+              </div>
               <ChevronDown 
-                className={`h-5 w-5 text-gray-500 transition-transform duration-300 ${
+                className={`h-5 w-5 text-gray-400 group-hover:text-[#0096ff] transition-all duration-300 ${
                   isOpen ? 'transform rotate-180' : ''
                 }`}
               />
-            </div>
+            </button>
           </CollapsibleTrigger>
-        </CardHeader>
+          <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
+        </div>
         <CollapsibleContent>
-          <CardContent className="px-8 pb-8">
+          <div className="pt-2">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {artists.map((artist, index) => (
             <div 
@@ -75,7 +81,7 @@ export function ArtistsLineup({ artists }: ArtistsLineupProps) {
                 )}
 
                 {/* Performance Day Badge */}
-                {artist.performanceDay && (
+                {artist.performanceDay && !isSingleDay && (
                   <div className="absolute top-3 left-3">
                     <Badge className="bg-white/95 backdrop-blur-sm text-gray-900 border-none shadow-md px-2.5 py-1 text-xs">
                       Day {artist.performanceDay}
@@ -98,9 +104,9 @@ export function ArtistsLineup({ artists }: ArtistsLineupProps) {
             </div>
           ))}
         </div>
-          </CardContent>
+          </div>
         </CollapsibleContent>
       </Collapsible>
-    </Card>
+    </div>
   );
 }
