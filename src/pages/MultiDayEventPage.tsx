@@ -1,0 +1,471 @@
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Header } from '../components/Header';
+import { Switch } from '../components/ui/switch';
+import { Label } from '../components/ui/label';
+import { Footer } from '../components/Footer';
+import { CountdownTimer } from '../components/CountdownTimer';
+import { FloatingTicketButton } from '../components/FloatingTicketButton';
+import { VenueInfo } from '../components/VenueInfo';
+import { OrganizerInfo } from '../components/OrganizerInfo';
+import { SocialShare } from '../components/SocialShare';
+import { EventSchedule } from '../components/EventSchedule';
+import { ArtistsLineup, Artist } from '../components/ArtistsLineup';
+import { EventMedia, EventMediaAttachment } from '../components/EventMedia';
+import { HeroCarousel } from '../components/HeroCarousel';
+import { Badge } from '../components/ui/badge';
+import { Separator } from '../components/ui/separator';
+import { Avatar, AvatarImage, AvatarFallback } from '../components/ui/avatar';
+import { Button } from '../components/ui/button';
+import { MapPin, CalendarDays, Clock, Users, Share2, Ticket } from 'lucide-react';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { DayTickets } from '../components/TicketPurchaseDialog';
+
+export function MultiDayEventPage() {
+  const navigate = useNavigate();
+  const [salesStarted, setSalesStarted] = useState(false);
+  const [showFloatingButton, setShowFloatingButton] = useState(false);
+  const stickyCardRef = useRef<HTMLDivElement>(null);
+
+  // Track visibility of sticky card button
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingButton(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (stickyCardRef.current) {
+      observer.observe(stickyCardRef.current);
+    }
+
+    return () => {
+      if (stickyCardRef.current) {
+        observer.unobserve(stickyCardRef.current);
+      }
+    };
+  }, []);
+
+  // Multi-day event data
+  const eventDates = [
+    { date: "February 15, 2026", startTime: "6:00 PM", endTime: "11:00 PM" },
+    { date: "February 16, 2026", startTime: "6:00 PM", endTime: "11:00 PM" },
+    { date: "February 17, 2026", startTime: "4:00 PM", endTime: "10:00 PM" }
+  ];
+
+  const event = {
+    name: "Summer Music Festival 2026",
+    type: "Music Festival",
+    category: "Entertainment",
+    location: "Central Park Amphitheater, New York",
+    eventDates: eventDates,
+    description: `Join us for the most anticipated music festival of the year! Experience three unforgettable days of live performances from world-renowned artists across multiple stages.
+
+Featuring diverse genres from rock to electronic, indie to hip-hop, this festival promises something for everyone. Enjoy gourmet food trucks, interactive art installations, and create memories that will last a lifetime.
+
+The festival grounds open 2 hours before the first performance each day, giving you plenty of time to explore, grab refreshments, and find the perfect spot. VIP packages include exclusive lounge access, premium viewing areas, and complimentary drinks.
+
+Don't miss out on this extraordinary celebration of music, art, and community!`,
+    eventDate: new Date('2026-02-15T18:00:00'),
+    ticketPrice: 149,
+    ticketSaleDate: salesStarted ? new Date('2025-10-01T10:00:00') : new Date('2025-12-01T10:00:00'),
+    imageUrls: [
+      "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1200",
+      "https://images.unsplash.com/photo-1672841821756-fc04525771c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMGZlc3RpdmFsJTIwY29uY2VydCUyMGNyb3dkfGVufDF8fHx8MTc2MTQyMTAwNHww&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  };
+
+  const organizer = {
+    name: "LiveNation Events",
+    totalEvents: 156,
+    yearsOnPlatform: 8,
+    profileImage: "https://images.unsplash.com/photo-1661593029081-f682eeef4e35?w=200"
+  };
+
+  const venue = {
+    venueName: "Central Park Amphitheater",
+    address: "1234 Park Avenue",
+    city: "New York",
+    state: "NY",
+    zipCode: "10019",
+    country: "USA"
+  };
+
+  // Artists lineup
+  const artists: Artist[] = [
+    {
+      name: "The Electric Souls",
+      genre: "Electronic",
+      headliner: true,
+      performanceDay: 1,
+      imageUrl: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400"
+    },
+    {
+      name: "Maya Rivers",
+      genre: "Indie Pop",
+      headliner: true,
+      performanceDay: 2,
+      imageUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400"
+    },
+    {
+      name: "Phoenix Rising",
+      genre: "Rock",
+      headliner: true,
+      performanceDay: 3,
+      imageUrl: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400"
+    },
+    {
+      name: "DJ Nexus",
+      genre: "House",
+      performanceDay: 1,
+      imageUrl: "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=400"
+    },
+    {
+      name: "Luna & The Waves",
+      genre: "Jazz",
+      performanceDay: 2,
+      imageUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400"
+    },
+    {
+      name: "The Midnight Groovers",
+      genre: "Funk",
+      performanceDay: 3,
+      imageUrl: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400"
+    }
+  ];
+
+  const mediaAttachments: EventMediaAttachment[] = [
+    {
+      type: 'youtube',
+      title: 'Event Trailer',
+      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      thumbnail: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800'
+    },
+    {
+      type: 'facebook',
+      title: 'Facebook Event Page',
+      url: 'https://facebook.com/events/summermusicfest2025'
+    },
+    {
+      type: 'instagram',
+      title: 'Instagram Page',
+      url: 'https://instagram.com/summermusicfest2025'
+    }
+  ];
+
+  // Ticket data for multi-day
+  const ticketData: DayTickets[] = [
+    {
+      date: "February 15, 2026",
+      dayNumber: 1,
+      tiers: [
+        {
+          name: "Pre-Sale (Early Bird)",
+          price: 99,
+          totalTickets: 500,
+          soldTickets: 500,
+          isSoldOut: true,
+          description: "Limited pre-sale tickets at the lowest price. Sold out!"
+        },
+        {
+          name: "Early Bird",
+          price: 129,
+          totalTickets: 800,
+          soldTickets: 720,
+          isSoldOut: false,
+          description: "Save big with early bird pricing. Limited availability!"
+        },
+        {
+          name: "General Admission",
+          price: 149,
+          totalTickets: 2000,
+          soldTickets: 450,
+          isSoldOut: false,
+          description: "Standard entry to the festival with access to all stages."
+        },
+        {
+          name: "VIP Pass",
+          price: 299,
+          totalTickets: 300,
+          soldTickets: 85,
+          isSoldOut: false,
+          description: "Exclusive lounge access, premium viewing areas, complimentary drinks, and VIP parking.",
+          requiresSeating: true
+        }
+      ]
+    },
+    {
+      date: "February 16, 2026",
+      dayNumber: 2,
+      tiers: [
+        {
+          name: "Pre-Sale (Early Bird)",
+          price: 99,
+          totalTickets: 500,
+          soldTickets: 500,
+          isSoldOut: true,
+          description: "Limited pre-sale tickets at the lowest price. Sold out!"
+        },
+        {
+          name: "Early Bird",
+          price: 129,
+          totalTickets: 800,
+          soldTickets: 650,
+          isSoldOut: false,
+          description: "Save big with early bird pricing. Limited availability!"
+        },
+        {
+          name: "General Admission",
+          price: 149,
+          totalTickets: 2000,
+          soldTickets: 520,
+          isSoldOut: false,
+          description: "Standard entry to the festival with access to all stages."
+        },
+        {
+          name: "VIP Pass",
+          price: 299,
+          totalTickets: 300,
+          soldTickets: 92,
+          isSoldOut: false,
+          description: "Exclusive lounge access, premium viewing areas, complimentary drinks, and VIP parking.",
+          requiresSeating: true
+        }
+      ]
+    },
+    {
+      date: "February 17, 2026",
+      dayNumber: 3,
+      tiers: [
+        {
+          name: "Pre-Sale (Early Bird)",
+          price: 99,
+          totalTickets: 500,
+          soldTickets: 500,
+          isSoldOut: true,
+          description: "Limited pre-sale tickets at the lowest price. Sold out!"
+        },
+        {
+          name: "Early Bird",
+          price: 129,
+          totalTickets: 800,
+          soldTickets: 600,
+          isSoldOut: false,
+          description: "Save big with early bird pricing. Almost gone!"
+        },
+        {
+          name: "General Admission",
+          price: 149,
+          totalTickets: 2000,
+          soldTickets: 380,
+          isSoldOut: false,
+          description: "Standard entry to the festival with access to all stages."
+        },
+        {
+          name: "VIP Pass",
+          price: 299,
+          totalTickets: 300,
+          soldTickets: 68,
+          isSoldOut: false,
+          description: "Exclusive lounge access, premium viewing areas, complimentary drinks, and VIP parking.",
+          requiresSeating: true
+        }
+      ]
+    }
+  ];
+
+  const handleBuyTickets = () => {
+    navigate('/tickets/booking', {
+      state: {
+        allDays: ticketData,
+        // Don't pre-select a day - let user choose
+        selectedDay: undefined,
+        selectedTier: undefined,
+        ticketCount: 1,
+        hasSeating: false
+      }
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <Header />
+      
+      {/* Dev Toggle for Testing */}
+      <div className="bg-yellow-50 border-b border-yellow-200">
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <div className="flex items-center gap-3">
+            <Switch 
+              id="sales-toggle" 
+              checked={salesStarted}
+              onCheckedChange={setSalesStarted}
+            />
+            <Label htmlFor="sales-toggle" className="cursor-pointer">
+              Toggle: {salesStarted ? 'Sales Started (See "Get Tickets")' : 'Sales Not Started (See Countdown)'}
+            </Label>
+          </div>
+        </div>
+      </div>
+      
+      {/* Hero Image Section */}
+      <div className="bg-gradient-to-br from-[#e6f4ff] via-[#f0f8ff] to-white py-8">
+        <div className="max-w-6xl mx-auto px-6">
+          <HeroCarousel images={event.imageUrls} />
+        </div>
+      </div>
+
+      {/* Event Details Section */}
+      <div className="bg-white py-10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Side - Event Info */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-2 mb-4">
+                {!salesStarted && (
+                  <Badge className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-xs border-0">
+                    Sales end soon
+                  </Badge>
+                )}
+              </div>
+
+              <h1 className="text-gray-900 text-4xl mb-6 tracking-tight font-semibold" style={{ letterSpacing: '-0.02em' }}>
+                {event.name}
+              </h1>
+
+              <div className="flex flex-wrap gap-6 text-gray-600 mb-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-[#0096ff]" />
+                  <span>{event.location}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CalendarDays className="h-4 w-4 text-[#006fcc]" />
+                  <span>{event.eventDates.length} Days Event</span>
+                </div>
+              </div>
+
+              <div className="flex gap-2 mb-8">
+                <Badge className="bg-[#0096ff] hover:bg-[#007ed6] px-3 py-1 text-sm text-white shadow-sm border-0">{event.type}</Badge>
+                <Badge className="border border-[#0096ff] text-[#0096ff] bg-transparent hover:bg-[#0096ff]/10 px-3 py-1 text-sm">{event.category}</Badge>
+              </div>
+            </div>
+
+            {/* Right Side - Ticket Purchase */}
+            <div className="lg:w-80 animate-scale-in" ref={stickyCardRef}>
+              <div className="bg-white border border-gray-200 shadow-md hover:shadow-lg rounded-2xl overflow-hidden">
+                <div className="p-6">
+                  <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Starting from</div>
+                  <div className="text-3xl font-semibold text-gray-900 mb-6">${event.ticketPrice}</div>
+                  
+                  {salesStarted ? (
+                    <Button
+                      onClick={handleBuyTickets}
+                      className="w-full h-12 bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white shadow-md shadow-[#0096ff]/20 mb-3"
+                    >
+                      <Ticket className="h-4 w-4 mr-2" />
+                      Get Tickets
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handleBuyTickets}
+                      className="w-full h-12 bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white shadow-md shadow-[#0096ff]/20 mb-3"
+                    >
+                      <Ticket className="h-4 w-4 mr-2" />
+                      Remind Me
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline"
+                    className="w-full h-12 border-2"
+                  >
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Share Event
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        {/* Countdown Timer */}
+        {!salesStarted && <CountdownTimer targetDate={event.ticketSaleDate} />}
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* Event Schedule */}
+        <EventSchedule eventDates={event.eventDates} isSingleDay={false} />
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* Artists Lineup */}
+        <ArtistsLineup artists={artists} isSingleDay={false} />
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* Event Media & Links */}
+        <EventMedia attachments={mediaAttachments} />
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* About This Event */}
+        <div className="mb-10">
+          <div className="mb-6">
+            <div className="flex items-center gap-3">
+              <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+              <h2 className="text-2xl font-semibold text-gray-900">About This Event</h2>
+            </div>
+            <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
+          </div>
+          <div className="pt-2">
+            <p className="text-base text-gray-700 leading-relaxed whitespace-pre-line">
+              {event.description}
+            </p>
+          </div>
+        </div>
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* Venue Information */}
+        <VenueInfo
+          venueName={venue.venueName}
+          address={venue.address}
+          city={venue.city}
+          state={venue.state}
+          zipCode={venue.zipCode}
+          country={venue.country}
+        />
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* About the Organizer */}
+        <OrganizerInfo
+          name={organizer.name}
+          totalEvents={organizer.totalEvents}
+          yearsOnPlatform={organizer.yearsOnPlatform}
+          profileImage={organizer.profileImage}
+        />
+      </div>
+
+      {/* Floating Ticket Button */}
+      {showFloatingButton && (
+        <FloatingTicketButton
+          price={event.ticketPrice}
+          onClick={handleBuyTickets}
+        />
+      )}
+
+      <Footer />
+    </div>
+  );
+}
+
