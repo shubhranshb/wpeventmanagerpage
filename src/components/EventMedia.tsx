@@ -38,13 +38,13 @@ export function EventMedia({ attachments }: EventMediaProps) {
               className="flex items-center justify-between w-full group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
-                <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-[#0096ff] transition-colors">
+                <div className="h-8 w-1 bg-gradient-to-b from-[#8b5cf6] to-[#a78bfa] rounded-full"></div>
+                <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-[#8b5cf6] transition-colors">
                   Event Media & Links
                 </h2>
               </div>
               <ChevronDown 
-                className={`h-5 w-5 text-gray-400 group-hover:text-[#0096ff] transition-all duration-300 ${
+                className={`h-5 w-5 text-gray-400 group-hover:text-[#8b5cf6] transition-all duration-300 ${
                   isOpen ? 'transform rotate-180' : ''
                 }`}
               />
@@ -94,7 +94,7 @@ export function EventMedia({ attachments }: EventMediaProps) {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-3 bg-gray-50/50 rounded-xl border border-gray-200 hover:border-[#0096ff]/30 hover:shadow-sm transition-all"
+                      className="group flex items-center justify-between p-3 bg-gray-50/50 rounded-xl border border-gray-200 hover:border-[#8b5cf6]/30 hover:shadow-sm transition-all"
                     >
                       <div className="flex items-center gap-2.5">
                         {link.type === 'facebook' && (
@@ -103,7 +103,7 @@ export function EventMedia({ attachments }: EventMediaProps) {
                               <Facebook className="h-4 w-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-gray-900 text-sm font-medium group-hover:text-[#0096ff] transition-colors">
+                              <div className="text-gray-900 text-sm font-medium group-hover:text-[#8b5cf6] transition-colors">
                                 Facebook Event
                               </div>
                               <div className="text-[10px] text-gray-600">View on Facebook</div>
@@ -116,7 +116,7 @@ export function EventMedia({ attachments }: EventMediaProps) {
                               <Instagram className="h-4 w-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-gray-900 text-sm font-medium group-hover:text-[#0096ff] transition-colors">
+                              <div className="text-gray-900 text-sm font-medium group-hover:text-[#8b5cf6] transition-colors">
                                 Instagram Page
                               </div>
                               <div className="text-[10px] text-gray-600">Follow on Instagram</div>
@@ -124,7 +124,7 @@ export function EventMedia({ attachments }: EventMediaProps) {
                           </>
                         )}
                       </div>
-                      <ExternalLink className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#0096ff] transition-colors" />
+                      <ExternalLink className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#8b5cf6] transition-colors" />
                     </a>
                   ))}
                 </div>

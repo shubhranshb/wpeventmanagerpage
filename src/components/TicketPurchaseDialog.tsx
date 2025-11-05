@@ -50,7 +50,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
           <>
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2 text-gray-900">
-                <Clock className="h-6 w-6 text-[#0096ff]" />
+                <Clock className="h-6 w-6 text-[#8b5cf6]" />
                 Get Notified When Sales Start
               </DialogTitle>
               <DialogDescription>
@@ -64,12 +64,12 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
                 <input
                   type="email"
                   placeholder="you@example.com"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0096ff] focus:border-[#0096ff]"
+                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]"
                 />
               </div>
               <div className="flex items-center justify-end gap-3">
                 <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
-                <Button className="bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white">Notify Me</Button>
+                <Button className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] hover:from-[#7c3aed] hover:to-[#8b5cf6] text-white">Notify Me</Button>
               </div>
             </div>
           </>
@@ -77,7 +77,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
           <>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-gray-900">
-            <Ticket className="h-6 w-6 text-[#0096ff]" />
+            <Ticket className="h-6 w-6 text-[#8b5cf6]" />
             Select Your Tickets
           </DialogTitle>
           <DialogDescription>
@@ -96,7 +96,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
                 <AccordionTrigger className="hover:no-underline">
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex items-center gap-4">
-                      <div className="bg-[#0096ff] text-white px-4 py-2 rounded-lg">
+                      <div className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] text-white px-4 py-2 rounded-lg">
                         <div className="flex items-center gap-2">
                           <CalendarDays className="h-4 w-4" />
                           <span className="text-sm">Day {day.dayNumber}</span>
@@ -125,7 +125,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
                           className={`p-5 transition-all ${
                             tier.isSoldOut 
                               ? 'bg-gray-50 border-gray-300 opacity-75' 
-                              : 'hover:shadow-lg hover:border-[#0096ff]/30'
+                              : 'hover:shadow-lg hover:border-[#8b5cf6]/30'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-4">
@@ -203,7 +203,7 @@ export function TicketPurchaseDialog({ open, onOpenChange, tickets, mode = 'buy'
                                 </Button>
                               ) : (
                                 <Button 
-                                  className="bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] min-w-[120px] text-white"
+                                  className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] hover:from-[#7c3aed] hover:to-[#8b5cf6] min-w-[120px] text-white"
                                 >
                                   Select
                                 </Button>

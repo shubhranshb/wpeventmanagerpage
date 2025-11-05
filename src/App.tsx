@@ -29,11 +29,11 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Multi-Day Festival */}
           <Card 
-            className="p-8 cursor-pointer hover:shadow-xl transition-all border-2 border-gray-200 hover:border-[#0096ff] group"
+            className="p-8 cursor-pointer hover:shadow-xl transition-all border-2 border-gray-200 hover:border-[#8b5cf6] group"
             onClick={() => navigate('/festival')}
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0096ff] to-[#33aaff] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#a78bfa] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Music2 className="h-10 w-10 text-white" />
               </div>
               <h2 className="text-2xl font-semibold text-gray-900 mb-3">
@@ -42,12 +42,12 @@ export default function App() {
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Experience multiple days of performances, diverse lineups, and extended festivities. Perfect for music festivals and multi-day celebrations.
               </p>
-              <div className="flex items-center gap-2 text-[#0096ff] mb-4">
+              <div className="flex items-center gap-2 text-[#8b5cf6] mb-4">
                 <CalendarDays className="h-5 w-5" />
                 <span className="font-medium">3+ Days</span>
               </div>
               <Button 
-                className="w-full bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white"
+                className="w-full bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] hover:from-[#7c3aed] hover:to-[#8b5cf6] text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   navigate('/festival');
@@ -60,11 +60,11 @@ export default function App() {
 
           {/* Single-Day Show */}
           <Card 
-            className="p-8 cursor-pointer hover:shadow-xl transition-all border-2 border-gray-200 hover:border-[#0096ff] group"
+            className="p-8 cursor-pointer hover:shadow-xl transition-all border-2 border-gray-200 hover:border-[#8b5cf6] group"
             onClick={() => navigate('/show')}
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0096ff] to-[#33aaff] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#8b5cf6] to-[#a78bfa] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Sparkles className="h-10 w-10 text-white" />
               </div>
               <h2 className="text-2xl font-semibold text-gray-900 mb-3">
@@ -73,12 +73,12 @@ export default function App() {
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Enjoy a focused, single-day event with curated performances. Ideal for concerts, shows, and special one-day experiences.
               </p>
-              <div className="flex items-center gap-2 text-[#0096ff] mb-4">
+              <div className="flex items-center gap-2 text-[#8b5cf6] mb-4">
                 <CalendarDays className="h-5 w-5" />
                 <span className="font-medium">1 Day</span>
               </div>
               <Button 
-                className="w-full bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white"
+                className="w-full bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] hover:from-[#7c3aed] hover:to-[#8b5cf6] text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   navigate('/show');

@@ -77,7 +77,7 @@ export function SeatSelection({ selectedSeats, onSeatSelect, maxSeats }: SeatSel
 
   const getSeatColor = (seat: Seat) => {
     if (selectedSeats.includes(seat.id)) {
-      return 'bg-[#0096ff] text-white border-[#0096ff] hover:bg-[#007ed6]';
+      return 'bg-[#8b5cf6] text-white border-[#8b5cf6] hover:bg-[#7c3aed]';
     }
     switch (seat.status) {
       case 'sold':
@@ -85,7 +85,7 @@ export function SeatSelection({ selectedSeats, onSeatSelect, maxSeats }: SeatSel
       case 'unavailable':
         return 'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed';
       default:
-        return 'bg-white text-gray-700 border-gray-300 hover:border-[#0096ff] hover:bg-[#e6f4ff]';
+        return 'bg-white text-gray-700 border-gray-300 hover:border-[#8b5cf6] hover:bg-[#f3e8ff]';
     }
   };
 
@@ -100,7 +100,7 @@ export function SeatSelection({ selectedSeats, onSeatSelect, maxSeats }: SeatSel
           <span className="text-sm text-gray-600">Available</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded border-2 border-[#0096ff] bg-[#0096ff]"></div>
+          <div className="w-6 h-6 rounded border-2 border-[#8b5cf6] bg-[#8b5cf6]"></div>
           <span className="text-sm text-gray-600">Selected</span>
         </div>
         <div className="flex items-center gap-2">
@@ -111,7 +111,7 @@ export function SeatSelection({ selectedSeats, onSeatSelect, maxSeats }: SeatSel
 
       {/* Stage Area */}
       <div className="text-center mb-8">
-        <div className="inline-block px-12 py-6 bg-gradient-to-r from-[#0096ff] to-[#33aaff] text-white rounded-lg font-semibold text-lg">
+        <div className="inline-block px-12 py-6 bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] text-white rounded-lg font-semibold text-lg">
           STAGE
         </div>
       </div>

@@ -30,13 +30,13 @@ export function ArtistsLineup({ artists, isSingleDay = false }: ArtistsLineupPro
               className="flex items-center justify-between w-full group cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
-                <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-[#0096ff] transition-colors">
+                <div className="h-8 w-1 bg-gradient-to-b from-[#8b5cf6] to-[#a78bfa] rounded-full"></div>
+                <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-[#8b5cf6] transition-colors">
                   Featured Artists
                 </h2>
               </div>
               <ChevronDown 
-                className={`h-5 w-5 text-gray-400 group-hover:text-[#0096ff] transition-all duration-300 ${
+                className={`h-5 w-5 text-gray-400 group-hover:text-[#8b5cf6] transition-all duration-300 ${
                   isOpen ? 'transform rotate-180' : ''
                 }`}
               />
@@ -92,11 +92,11 @@ export function ArtistsLineup({ artists, isSingleDay = false }: ArtistsLineupPro
 
               {/* Artist Info */}
               <div className="p-5">
-                <h3 className="text-gray-900 mb-2 text-base font-medium group-hover:text-[#0096ff] transition-colors">
+                <h3 className="text-gray-900 mb-2 text-base font-medium group-hover:text-[#8b5cf6] transition-colors">
                   {artist.name}
                 </h3>
                 <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="border border-[#0096ff]/30 text-[#0096ff] bg-transparent hover:bg-[#0096ff]/10 px-2.5 py-0.5 text-xs">
+                    <Badge variant="outline" className="border border-[#8b5cf6]/30 text-[#8b5cf6] bg-transparent hover:bg-[#8b5cf6]/10 px-2.5 py-0.5 text-xs">
                     {artist.genre}
                   </Badge>
                 </div>

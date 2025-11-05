@@ -35,7 +35,7 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
     <div className="mb-12">
       <div className="mb-6">
         <div className="flex items-center gap-3">
-          <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
+          <div className="h-8 w-1 bg-gradient-to-b from-[#8b5cf6] to-[#a78bfa] rounded-full"></div>
           <h2 className="text-2xl font-semibold text-gray-900">Venue</h2>
         </div>
         <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
@@ -52,7 +52,7 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
           
           <Button 
             onClick={() => window.open(googleMapsUrl, '_blank')}
-            className="bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] shrink-0 shadow-md shadow-[#0096ff]/20 h-12 px-5 text-sm text-white"
+            className="bg-[#8b5cf6] hover:bg-[#7c3aed] shrink-0 shadow-md shadow-[#8b5cf6]/20 h-12 px-5 text-sm text-white"
           >
             <Navigation className="h-4 w-4 mr-2" />
             Get Directions
@@ -65,11 +65,11 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
         <Collapsible open={isLayoutOpen} onOpenChange={setIsLayoutOpen}>
           <CollapsibleTrigger asChild>
             <button 
-              className="flex items-center justify-between w-full p-4 rounded-2xl bg-white hover:bg-gray-50 transition-all border border-gray-200 hover:border-[#0096ff]/30"
+              className="flex items-center justify-between w-full p-4 rounded-2xl bg-white hover:bg-gray-50 transition-all border border-gray-200 hover:border-[#8b5cf6]/30"
               onClick={() => setIsLayoutOpen(!isLayoutOpen)}
             >
               <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-[#0096ff]" />
+                <MapPin className="h-5 w-5 text-[#8b5cf6]" />
                 <span className="text-gray-900 text-base font-medium">Venue Layout</span>
               </div>
               <ChevronDown 
@@ -84,7 +84,7 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
               <div className="bg-gray-50 rounded-lg p-8 border border-gray-200">
                 <div className="max-w-md mx-auto">
                   {/* Stage */}
-                  <div className="bg-[#0096ff] text-white text-center py-4 rounded-t-lg mb-6">
+                  <div className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] text-white text-center py-4 rounded-t-lg mb-6">
                     STAGE
                   </div>
                   
@@ -135,11 +135,11 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
         <Collapsible open={isRulesOpen} onOpenChange={setIsRulesOpen}>
           <CollapsibleTrigger asChild>
             <button 
-              className="flex items-center justify-between w-full p-4 rounded-2xl bg-white hover:bg-gray-50 transition-all border border-gray-200 hover:border-[#0096ff]/30"
+              className="flex items-center justify-between w-full p-4 rounded-2xl bg-white hover:bg-gray-50 transition-all border border-gray-200 hover:border-[#8b5cf6]/30"
               onClick={() => setIsRulesOpen(!isRulesOpen)}
             >
               <div className="flex items-center gap-3">
-                <AlertCircle className="h-5 w-5 text-[#0096ff]" />
+                <AlertCircle className="h-5 w-5 text-[#8b5cf6]" />
                 <span className="text-gray-900 text-base font-medium">Venue Rules & Guidelines</span>
               </div>
               <ChevronDown 
@@ -152,8 +152,8 @@ export function VenueInfo({ venueName, address, city, state, zipCode, country = 
           <CollapsibleContent>
             <div className="pt-5 space-y-3">
               {venueRules.map((rule, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-[#0096ff]/30 hover:shadow-sm transition-all">
-                  <div className="flex-shrink-0 w-7 h-7 bg-[#0096ff] text-white text-sm rounded-full flex items-center justify-center shadow-sm">
+                <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-[#8b5cf6]/30 hover:shadow-sm transition-all">
+                  <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-[#8b5cf6] to-[#a78bfa] text-white text-sm rounded-full flex items-center justify-center shadow-sm">
                     {index + 1}
                   </div>
                   <p className="text-gray-700 flex-1 leading-relaxed text-sm">{rule}</p>

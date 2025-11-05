@@ -46,7 +46,7 @@ export function HeroCarousel({ images, autoPlayInterval = 5000 }: HeroCarouselPr
             className="w-full h-full object-cover"
           />
           {/* Enhanced gradient overlay with brand colors */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0096ff]/40 via-[#006fcc]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8b5cf6]/40 via-[#a78bfa]/20 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent"></div>
         </div>
       ))}

@@ -157,15 +157,15 @@ export function TicketBookingPage() {
                   <h1 className="text-2xl font-semibold text-gray-900 mb-4">{event.name}</h1>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex items-center gap-2">
-                      <CalendarDays className="h-4 w-4 text-[#0096ff]" />
+                      <CalendarDays className="h-4 w-4 text-[#8b5cf6]" />
                       <span>{event.date}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-[#0096ff]" />
+                      <Clock className="h-4 w-4 text-[#8b5cf6]" />
                       <span>{event.time}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-[#0096ff]" />
+                      <MapPin className="h-4 w-4 text-[#8b5cf6]" />
                       <span>{event.location}</span>
                     </div>
                   </div>
@@ -183,8 +183,8 @@ export function TicketBookingPage() {
                       key={index}
                       className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                         selectedDay?.date === day.date
-                          ? 'border-[#0096ff] bg-[#e6f4ff]'
-                          : 'border-gray-200 hover:border-[#0096ff]/50'
+                          ? 'border-[#8b5cf6] bg-[#f3e8ff]'
+                          : 'border-gray-200 hover:border-[#8b5cf6]/50'
                       }`}
                       onClick={() => handleDaySelect(day)}
                     >
@@ -222,8 +222,8 @@ export function TicketBookingPage() {
                       key={index}
                       className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                         selectedTier?.name === tier.name
-                          ? 'border-[#0096ff] bg-[#e6f4ff]'
-                          : 'border-gray-200 hover:border-[#0096ff]/50'
+                          ? 'border-[#8b5cf6] bg-[#f3e8ff]'
+                          : 'border-gray-200 hover:border-[#8b5cf6]/50'
                       }`}
                       onClick={() => handleTierSelect(tier)}
                     >
@@ -343,7 +343,7 @@ export function TicketBookingPage() {
                   (currentStep === 'tickets' && !selectedTier) ||
                   (currentStep === 'seats' && selectedSeats.length !== ticketQuantity)
                 }
-                className="bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white"
+                className="bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] hover:from-[#7c3aed] hover:to-[#8b5cf6] text-white"
               >
                 {currentStep === 'review' ? 'Proceed to Payment' : 'Continue'}
               </Button>
@@ -385,7 +385,7 @@ export function TicketBookingPage() {
               
               <div className="flex items-center justify-between mb-6">
                 <span className="text-lg font-semibold text-gray-900">Total</span>
-                <span className="text-2xl font-bold text-[#0096ff]">
+                <span className="text-2xl font-bold text-[#8b5cf6]">
                   ${((totalPrice + 5) * 1.1).toFixed(2)}
                 </span>
               </div>

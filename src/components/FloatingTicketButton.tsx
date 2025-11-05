@@ -32,7 +32,7 @@ export function FloatingTicketButton({ price, onClick }: FloatingTicketButtonPro
         </div>
         
         <Button 
-          className="w-full bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] shadow-lg hover:shadow-xl transition-all h-12 text-sm text-white"
+          className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] shadow-lg hover:shadow-xl transition-all h-12 text-sm text-white"
           size="lg"
           onClick={onClick}
         >

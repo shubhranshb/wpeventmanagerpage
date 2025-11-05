@@ -333,20 +333,27 @@ Don't miss out on this extraordinary celebration of music, art, and community!`,
                 {event.name}
               </h1>
 
-              <div className="flex flex-wrap gap-6 text-gray-600 mb-6 text-sm">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-[#0096ff]" />
-                  <span>{event.location}</span>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-gray-700 mb-6 text-base">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-[#8b5cf6]/10 rounded-lg">
+                    <MapPin className="h-6 w-6 text-[#8b5cf6]" />
+                  </div>
+                  <span className="font-medium">{event.location}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4 text-[#006fcc]" />
-                  <span>{event.eventDates.length} Days Event</span>
+                <div className="hidden sm:block h-6 w-px bg-gray-300"></div>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-[#8b5cf6]/10 rounded-lg">
+                    <CalendarDays className="h-6 w-6 text-[#8b5cf6]" />
+                  </div>
+                  <span className="font-medium">{event.eventDates.length} Days Event</span>
                 </div>
               </div>
 
               <div className="flex gap-2 mb-8">
-                <Badge className="bg-[#0096ff] hover:bg-[#007ed6] px-3 py-1 text-sm text-white shadow-sm border-0">{event.type}</Badge>
-                <Badge className="border border-[#0096ff] text-[#0096ff] bg-transparent hover:bg-[#0096ff]/10 px-3 py-1 text-sm">{event.category}</Badge>
+                <Badge className="bg-[#8b5cf6] hover:bg-[#7c3aed] px-3 py-1 text-sm text-white shadow-sm border-0">{event.type}</Badge>
+                <Badge className="bg-[#f3e8ff] text-[#8b5cf6] hover:bg-[#e9d5ff] px-4 py-1.5 text-sm font-medium border-0">
+                  {event.category}
+                </Badge>
               </div>
             </div>
 
@@ -360,15 +367,19 @@ Don't miss out on this extraordinary celebration of music, art, and community!`,
                   {salesStarted ? (
                     <Button
                       onClick={handleBuyTickets}
-                      className="w-full h-12 bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white shadow-md shadow-[#0096ff]/20 mb-3"
+                      className="w-full h-12 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white shadow-md shadow-[#8b5cf6]/20 mb-3"
                     >
                       <Ticket className="h-4 w-4 mr-2" />
                       Get Tickets
                     </Button>
                   ) : (
                     <Button
-                      onClick={handleBuyTickets}
-                      className="w-full h-12 bg-gradient-to-r from-[#0096ff] to-[#33aaff] hover:from-[#33aaff] hover:to-[#66bfff] text-white shadow-md shadow-[#0096ff]/20 mb-3"
+                      onClick={() => {
+                        // Show reminder confirmation or open reminder dialog
+                        alert('Reminder set! We\'ll notify you when tickets go on sale.');
+                      }}
+                      className="w-full h-12 bg-gray-500 hover:bg-gray-600 text-white shadow-md mb-3"
+                      disabled={false}
                     >
                       <Ticket className="h-4 w-4 mr-2" />
                       Remind Me
@@ -403,24 +414,12 @@ Don't miss out on this extraordinary celebration of music, art, and community!`,
         {/* Subtle separator */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
 
-        {/* Artists Lineup */}
-        <ArtistsLineup artists={artists} isSingleDay={false} />
-
-        {/* Subtle separator */}
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
-
-        {/* Event Media & Links */}
-        <EventMedia attachments={mediaAttachments} />
-
-        {/* Subtle separator */}
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
-
-        {/* About This Event */}
+        {/* Overview */}
         <div className="mb-10">
           <div className="mb-6">
             <div className="flex items-center gap-3">
-              <div className="h-8 w-1 bg-[#0096ff] rounded-full"></div>
-              <h2 className="text-2xl font-semibold text-gray-900">About This Event</h2>
+              <div className="h-8 w-1 bg-gradient-to-b from-[#8b5cf6] to-[#a78bfa] rounded-full"></div>
+              <h2 className="text-2xl font-semibold text-gray-900">Overview</h2>
             </div>
             <div className="mt-3 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent"></div>
           </div>
@@ -430,6 +429,18 @@ Don't miss out on this extraordinary celebration of music, art, and community!`,
             </p>
           </div>
         </div>
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* Artists Lineup */}
+        <ArtistsLineup artists={artists} isSingleDay={false} />
+
+        {/* Subtle separator */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
+
+        {/* Event Media & Links */}
+        <EventMedia attachments={mediaAttachments} />
 
         {/* Subtle separator */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10"></div>
